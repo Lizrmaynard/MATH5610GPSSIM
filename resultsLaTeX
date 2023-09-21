@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage{amsthm,amssymb}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{float}
+
+\title{Term Project Report MATH 5610}
+\author{Morgan Kelley & Elizabeth Maynard}
+\date{November 12, 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+Our project to create a satellite and receiver was one of the most difficult but rewarding processes that we've gone through this semester. Neither of us are very familiar with coding, which proved to be an interesting and challenging thing to overcome- adding more rigor to an already difficult project. Having to also learn the math involved with being able to obtain the correct solution, then applying that knowledge to a very small base of coding knowledge gave us a real obstacle to have to overcome to obtain the right outputs. We haven't really been asked in the past to take our understanding of reading, theorizing, practice, and problem solving and apply them to creating code to translate such knowledge. We also didn't really have a whole lot of experience using a computer terminal either! We both had to learn so much in this project, and we are really proud of our result we finally obtained- especially since it worked properly and gave us a fairly clean result. A lot of this project was a sharp learning curve of having to learn math and then learn coding at the same time- and learn how to run that code on our computers. In the end though, we learned a lot about powering through and solving problems that we might have avoided otherwise. This project served a good purpose in teaching us and also challenging us at the same time- forcing us to tackle multiple issues at the same time and adapting to changing ideas and creating new solutions. We not only had to learn math, but we had to learn coding and command modules and how to combine math and coding into one final product that worked. In completing this, it gave us a good introduction to the world of math coding.
+
+\section{Difficulties and Solutions}
+One of the pieces that we struggled the most on in this project was the math required to compute the time and position of the vehicle in the receiver. We kept attempting to compute these by performing Newtons Method on the system
+\begin{math}\mathnormal{F(x)=}\left[\!
+    \begin{array}{ccc}
+      \|x_v-x_{s1}\| & -\|x_v-x_{s2}\| & -c(t_{s2}-t_{s1}) \\
+      \vdots & \ddots & \vdots \\
+      \|x_v-x_{s(m-1)}\| & -\|x_v-x_{sm}\| & -c(t_{sm}-t_{s(m-1)})
+    \end{array}\!\right]\end{math}
+and then making a condition on the number of satellites that would be permitted to give data, rather than performing Newtons Method on the least squares of \begin{math}
+    F(x)^TF(x)
+\end{math}. After days of failed attempts and endless pieces of paper, we found that a quick discussion with Dr. Alfeld cleared up all of our misconceptions.
+\bigbreak
+
+One issue we had when we actually got to code the satellite and receiver was mostly a communication issue to overcome. For parts of the code (for both satellite and receiver), this was coded during a time when one of our group members was in a very focused mindset, so there was a lack of annotation on those parts of the code. When it came time to discuss what was written, we found that there was difficulty in explaining how and why things were done the way that they were. So we had to go through again and go piece by piece to figure out what everything did, so we could find the eventual cause of the later errors we would get in our outputs.
+
+\bigbreak
+During the code writing process we were printing an output, but all five columns would produce incorrect values- which became a major issue of figuring out where in our code was the error. We first narrowed it down to being something wrong in the satellite code, where we then found it quite satisfying to parse through the program and figure out where each computation was getting disrupted and to then figure out how we could change it. This leading to the discovery that we were calling an input for a variable of a function to be another function- solving this largely fixed many of our outputs an set us on the right path to being able to obtain the correct outputs.
+\bigbreak
+
+We also had a major issue where we were getting an EOFError that was an End Of File Error. This caused our program to not terminate gracefully- even though at this stage we were getting the correct outputs. We solved this by iterating our satellite outputs through a try- except statement in a while loop, where we created a matrix that would strip any excess characters off the end of the vehicle input, iterate through each line of the vehicle input, then append the line to the matrix which would then be processed through the function that gives us our output.
+
+\bigbreak
+    We were also completely surprised at how coding heavy the satellite program was. We had anticipated that the satellite would be much easier than the receiver because there were less large computations needed, but we were caught off guard by the nuanced code that was required to produce the values. This was mainly due to a misunderstanding of what the satellite did in the first place. We originally assumed the satellite would read in whatever file vehicle sent to it, then would send the read in file as an output to receiver, which would then calculate from there what the results would be. Once we understood what the satellite's purpose actually was, however, we corrected that assumption and designed the basis for the satellite we actually use.
+
+\section{Overall Thoughts}
+We finished this project with a much better understanding of both the math involved and the coding involved. It took learning a lot about Python (the language we coded in) as well as learning about Unix and how to get programs to work on the school's servers. We were really not super well versed in a lot of computer stuff beyond just regular every day use, so this was a very interesting way to get out of our comfort zones and try something different and challenging. We ran into a lot of issues that ranged from the math to the coding to just straight up miscommunication between partners. But we worked through each of them together and methodically to obtain a working satellite and receiver that both individually work with the provided satellite and receiver! And doing this really helped reinforce what we learned and that we could work through difficult problems if we applied the skills we already had coming into the class. Because this project took more than just the skills we already had. And we can now say that we truly understand the basic workings of GPS. We also took away something that makes for a great party trick.
+
+
+
+\end{document}
